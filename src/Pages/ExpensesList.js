@@ -1,30 +1,20 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Card, Row, Table } from 'react-bootstrap'
 import { FilterComponent } from '../Components/FilterComponent';
 
 export function ExpensesList(props) {
-    const [newFilterSelection, setNewFilterSelection] = useState([]);
-    const [selectedFilterList, setSelectedFilterList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-    const filters = ["shopping", "clothes", "cleaning"];
+    const filters = ["Shopping", "Clothes", "Cleaning"];
+    const [expenses, setExpenses] = useState([]);
 
-    const handleSelect = filt => {
-        debugger;
-        var a = props.data;
-        let isSelected = selectedFilterList.includes(filt)
-        // { isSelected ? setNewFilterSelection(newFilterSelection => newFilterSelection.filter(f => f !== filt)) : setSelectedFilterList(selectedFilterList => [...selectedFilterList, filt]) };
-        if (isSelected) {
-            setNewFilterSelection(selectedFilterList => selectedFilterList.filter(f => f !== filt));
-            setSelectedFilterList(newFilterSelection);
-            alert("filtre silindi")
+    useEffect(()=>{setExpenses(props.data);},[]);
+    const ApplyFilterData = (selectedFilterList) => {
+        setExpenses(props.data.filter(item => (selectedFilterList.includes(item.category))));
+        if(selectedFilterList.length==0) 
+        { 
+        setExpenses(props.data);
         }
-        else {
-            selectedFilterList.push(filt);
-            alert("filtre eklendi")
-        }
-    }
-    const ApplyFilterData = () => {
-        props.data(props.data.filter(item => (selectedFilterList.includes(item.category))));
     }
     return (
         <div>
@@ -37,21 +27,19 @@ export function ExpensesList(props) {
                                 <tr>
                                     <th>id</th>
                                     <th>
-                                        <div>category
-                                            <FilterComponent onApply={() => alert(selectedFilterList)} filterList={filters} 
-                                            openControl={isOpen}
-                                            applyFilter={(filter) => ApplyFilterData(filter)}
-                                            >
-
-                                            </FilterComponent>
-                                            </div>
+                                        <div style={{display:'flex'}}>category
+                                            <FilterComponent filterList={filters}
+                                                openControl={isOpen}
+                                                applyFilter={(filter) => ApplyFilterData(filter)}
+                                            ></FilterComponent>
+                                        </div>
                                     </th>
                                     <th>amount</th>
                                     <th>detail</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {props.data?.map((item, i) => {
+                                {expenses?.map((item, i) => {
                                     return (
                                         <tr key={i}>
                                             <td>{item.id}</td>
