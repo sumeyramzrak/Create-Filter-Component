@@ -17,7 +17,7 @@
   justify-content: center;
   align-items: center;
   margin-left: 5px;
-  background-color:white;
+  background-color: white;
   border-radius: 10%;
   border: 1px solid rgb(187, 202, 208);
 }
@@ -47,6 +47,11 @@
   display: flex;
   font-family: 'Montserrat', sans-serif;
 }
+
+  .filter-list label input:checked{
+    color:red;
+    background-color: red;
+  }
 
 #filter_apply_button {
   border: 1px solid black;

@@ -25,7 +25,7 @@ export function FilterComponent(props) {
     return (
         <div>
             <div className='filter'>
-                <button ref={buttonRef} onClick={openFilter} className="filter__button"><i className="bi bi-funnel-fill"></i></button>
+                <button ref={buttonRef} onClick={openFilter} className="filter__button" data-testid="filter_button"><i className="bi bi-funnel-fill"></i></button>
                 {isOpen ? (
                     <div>
                         <div ref={dropdownRef} className="filter__dropdown" style={{ display: 'flex', flexDirection: 'column', float: 'left' }}>
@@ -45,7 +45,7 @@ export function FilterComponent(props) {
                                 })}
                             </div>
                             <div>
-                                <Button id="filter_apply_button" style={{display:'flex',textAlign:'center',verticalAlign:'middle'}} onClick={() => { props.applyFilter(selectedFilterList) }}>Apply</Button>
+                                <Button id="filter_apply_button" style={{display:'flex',textAlign:'center',verticalAlign:'middle'}} onClick={() => { props.applyFilter(selectedFilterList) }} data-testid="filter_apply_button">Apply</Button>
                             </div>
                         </div>
                     </div>) : null}
