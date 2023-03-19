@@ -15,6 +15,7 @@ export function ExpensesList(props) {
         { 
         setExpenses(props.data);
         }
+        setIsOpen(false);
     }
     return (
         <div>

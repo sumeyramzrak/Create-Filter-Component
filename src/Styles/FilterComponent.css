@@ -46,6 +46,9 @@
   border: 1px solid cadetblue;
   display: flex;
   font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  float: left;
 }
 
   .filter-list label input:checked{
@@ -62,4 +65,7 @@
   padding-bottom: 25px;
   background-color: white;
   color: black;
+  display:flex;
+  text-align:center;
+  vertical-align: middle;
 }
